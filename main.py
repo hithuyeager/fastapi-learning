@@ -1,11 +1,5 @@
-from pydantic import BaseModel
 from fastapi import FastAPI
+from router import router
 
 app = FastAPI()
-
-class User(BaseModel):
-    username: str
-
-@app.post("/users/")
-async def create_user(user: User):
-    return {"username": user.username}
+app.include_router(router)
